@@ -4,7 +4,6 @@ import com.squareup.okhttp.OkHttpClient;
 import hudson.Extension;
 import hudson.model.*;
 import hudson.model.listeners.RunListener;
-import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 
@@ -42,7 +41,7 @@ public class PostCompletedRunListener extends RunListener<Run> implements Descri
       return;
     }
 
-    String resultUrl = Jenkins.getInstance().getRootUrl() + run.getUrl();
+    String resultUrl = Hudson.getInstance().getRootUrl() + run.getUrl();
     LOG.info(run.getParent().getName() + "#" + run.getNumber() + " is posting its result url : " + resultUrl + " to : " + urlToSubmitTo);
     byte[] body = new byte[0];
     try {
